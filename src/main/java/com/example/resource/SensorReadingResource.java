@@ -9,7 +9,7 @@ package com.example.resource;
  * @author Dii
  */
 
-//import com.example.exception.SensorUnavailableException;
+import com.example.exception.SensorUnavailableException;
 import com.example.model.Sensor;
 import com.example.model.SensorReading;
 import com.example.store.DataStore;
@@ -44,7 +44,7 @@ public class SensorReadingResource {
         Sensor sensor = DataStore.sensors.get(sensorId);
 
         if ("MAINTENANCE".equalsIgnoreCase(sensor.getStatus())) {
-            //throw new SensorUnavailableException("Sensor " + sensorId + " is under maintenance.");
+            throw new SensorUnavailableException("Sensor " + sensorId + " is under maintenance.");
         }
 
         // Generate ID and timestamp if not provided

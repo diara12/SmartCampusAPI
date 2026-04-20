@@ -9,8 +9,8 @@ package com.example.resource;
  * @author Dii
  */
 
-//import com.example.exception.LinkedResourceNotFoundException;
-//import com.example.exception.SensorNotFoundException;
+import com.example.exception.LinkedResourceNotFoundException;
+import com.example.exception.SensorNotFoundException;
 import com.example.model.Sensor;
 import com.example.store.DataStore;
 
@@ -50,7 +50,7 @@ public class SensorResource {
             return Response.status(400).entity("{\"error\":\"Sensor ID is required\"}").build();
         }
         if (!DataStore.rooms.containsKey(sensor.getRoomId())) {
-            //throw new LinkedResourceNotFoundException("Room not found: " + sensor.getRoomId());
+            throw new LinkedResourceNotFoundException("Room not found: " + sensor.getRoomId());
         }
         DataStore.sensors.put(sensor.getId(), sensor);
 
@@ -61,11 +61,11 @@ public class SensorResource {
     }
 
     // Sub-resource locator for readings
-    //@Path("{sensorId}/readings")
-    //public SensorReadingResource getReadings(@PathParam("sensorId") String sensorId) {
-        //if (!DataStore.sensors.containsKey(sensorId)) {
-            //throw new SensorNotFoundException("Sensor not found: " + sensorId);
-        //}
-        //return new SensorReadingResource(sensorId);
-    //}
+    @Path("{sensorId}/readings")
+    public SensorReadingResource getReadings(@PathParam("sensorId") String sensorId) {
+        if (!DataStore.sensors.containsKey(sensorId)) {
+            throw new SensorNotFoundException("Sensor not found: " + sensorId);
+        }
+        return new SensorReadingResource(sensorId);
+    }
 }

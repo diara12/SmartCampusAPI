@@ -9,8 +9,8 @@ package com.example.resource;
  * @author Dii
  */
 
-//import com.example.exception.RoomNotFoundException;
-//import com.example.exception.RoomNotEmptyException;
+import com.example.exception.RoomNotFoundException;
+import com.example.exception.RoomNotEmptyException;
 import com.example.model.Room;
 import com.example.store.DataStore;
 
@@ -53,7 +53,7 @@ public class RoomResource {
     public Response getRoom(@PathParam("roomId") String roomId) {
         Room room = DataStore.rooms.get(roomId);
         if (room == null) {
-            //throw new RoomNotFoundException("Room not found: " + roomId);
+            throw new RoomNotFoundException("Room not found: " + roomId);
         }
         return Response.ok(room).build();
     }
@@ -64,10 +64,10 @@ public class RoomResource {
     public Response deleteRoom(@PathParam("roomId") String roomId) {
         Room room = DataStore.rooms.get(roomId);
         if (room == null) {
-            //throw new RoomNotFoundException("Room not found: " + roomId);
+            throw new RoomNotFoundException("Room not found: " + roomId);
         }
         if (!room.getSensorIds().isEmpty()) {
-            //throw new RoomNotEmptyException("Room " + roomId + " still has sensors assigned.");
+            throw new RoomNotEmptyException("Room " + roomId + " still has sensors assigned.");
         }
         DataStore.rooms.remove(roomId);
         return Response.noContent().build();
