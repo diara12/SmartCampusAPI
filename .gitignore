@@ -1,2 +1,6 @@
 target/ 
 nb-configuration.xml 
+nbactions.xml 
+nb-configuration.xml 
+*.class 
+*.war 
