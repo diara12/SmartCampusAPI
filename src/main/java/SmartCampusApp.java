@@ -13,6 +13,6 @@ import javax.ws.rs.core.Application;
  */
 
 @ApplicationPath("/api/v1")
-public class SmartCampusApp {
+public class SmartCampusApp extends Application{
     
 }
