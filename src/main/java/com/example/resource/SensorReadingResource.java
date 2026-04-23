@@ -31,14 +31,14 @@ public class SensorReadingResource {
         this.sensorId = sensorId;
     }
 
-    // GET /api/v1/sensors/{sensorId}/readings
+    // get all readings
     @GET
     public Response getReadings() {
         List<SensorReading> history = DataStore.readings.getOrDefault(sensorId, new ArrayList<>());
         return Response.ok(history).build();
     }
 
-    // POST /api/v1/sensors/{sensorId}/readings
+    // add a sensor reading
     @POST
     public Response addReading(SensorReading reading) {
         Sensor sensor = DataStore.sensors.get(sensorId);

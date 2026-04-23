@@ -25,14 +25,14 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class RoomResource {
 
-    // GET /api/v1/rooms - list all rooms
+    // list all rooms
     @GET
     public Response getAllRooms() {
         List<Room> roomList = new ArrayList<>(DataStore.rooms.values());
         return Response.ok(roomList).build();
     }
 
-    // POST /api/v1/rooms - create a new room
+    // create a new room
     @POST
     public Response createRoom(Room room) {
         if (room.getId() == null || room.getId().isEmpty()) {
@@ -47,7 +47,7 @@ public class RoomResource {
                 .build();
     }
 
-    // GET /api/v1/rooms/{roomId} - get a specific room
+    // get a specific room
     @GET
     @Path("{roomId}")
     public Response getRoom(@PathParam("roomId") String roomId) {
@@ -58,7 +58,7 @@ public class RoomResource {
         return Response.ok(room).build();
     }
 
-    // DELETE /api/v1/rooms/{roomId} - delete a room
+    // delete a room
     @DELETE
     @Path("{roomId}")
     public Response deleteRoom(@PathParam("roomId") String roomId) {

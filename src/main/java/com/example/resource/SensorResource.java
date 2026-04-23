@@ -25,7 +25,7 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class SensorResource {
 
-    // GET /api/v1/sensors - get all sensors (with optional type filter)
+    // get all sensors (with optional type filter)
     @GET
     public Response getAllSensors(@QueryParam("type") String type) {
         List<Sensor> sensorList = new ArrayList<>(DataStore.sensors.values());
@@ -43,7 +43,7 @@ public class SensorResource {
         return Response.ok(sensorList).build();
     }
 
-    // POST /api/v1/sensors - register a new sensor
+    // register a new sensor
     @POST
     public Response createSensor(Sensor sensor) {
         if (sensor.getId() == null || sensor.getId().isEmpty()) {
